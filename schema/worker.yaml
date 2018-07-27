@@ -1,0 +1,40 @@
+title: BitShares - Worker
+
+$schema: http://json-schema.org/draft-07/schema#
+required:
+- organization
+- worker
+
+additionalProperties: false
+type: object
+description: Information about a worker on the BitShares blockchain
+
+# Also load the definitions.yaml file
+
+properties:
+  organization:
+    $ref: ! '#/definitions/organization'
+    type: object
+    description: Organization details
+
+  worker:
+    $id: /properties/org/properties/contact
+    type: object
+    properties:
+
+      worker_name:
+         minLength: 3
+         $id: /properties/worker/properties/worker_name
+         type: string
+         description: Worker name
+
+      worker_id:
+         minLength: 5
+         $id: /properties/worker/properties/worker_id
+         type: string
+         description: Worker ID
+
+      worker_report_url:
+         $id: /properties/worker/properties/worker_report_url
+         type: string
+         description: Link to site that justifies voting reasons

@@ -1,0 +1,75 @@
+title: BitShares - Blockproducer
+
+$schema: http://json-schema.org/draft-07/schema#
+required:
+- organization
+- block_production
+- nodes
+
+additionalProperties: false
+type: object
+description: Information about a block producer on the BitShares blockchain
+
+# Also load the definitions.yaml file
+
+properties:
+  organization:
+    $ref: ! '#/definitions/organization'
+    type: object
+    description: Organization details
+
+  block_production:
+    $id: /properties/block_production
+    type: object
+    properties:
+
+      signing_public_key:
+         maxLength: 53
+         minLength: 53
+         $id: /properties/block_production/properties/signing_public_key
+         type: string
+         description: Public key for block signing (starting with BTS)
+
+      account_name:
+         minLength: 3
+         $id: /properties/block_production/properties/account_name
+         type: string
+         description: Producer account name
+
+      witness_id:
+         minLength: 5
+         $id: /properties/block_production/properties/witness_id
+         type: string
+         description: Witness ID of producer
+
+  nodes:
+    uniqueItems: true
+    items:
+      type: object
+      properties:
+        node_type:
+          items:
+            type: string
+            enum:
+            - producer
+            - p2p
+            - api
+            - seed
+          type: array
+          description: Type of service
+
+        location:
+          $ref: ! '#/definitions/location'
+          description: Node location
+
+        endpoint:
+          type: string
+          description: full URL for endpoint
+
+        features:
+          description: List of feature describing strings (enabled plugins)
+          type: array
+          items:
+            type: string
+
+    type: array

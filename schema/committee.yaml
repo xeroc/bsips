@@ -1,0 +1,40 @@
+title: BitShares - Committee Member
+
+$schema: http://json-schema.org/draft-07/schema#
+required:
+- organization
+- committee_member
+
+additionalProperties: false
+type: object
+description: Information about a Committee Member on the BitShares blockchain
+
+# Also load the definitions.yaml file
+
+properties:
+  organization:
+    $ref: ! '#/definitions/organization'
+    type: object
+    description: Organization details
+
+  committee_member:
+    $id: /properties/org/properties/contact
+    type: object
+    properties:
+
+      account_name:
+         minLength: 3
+         $id: /properties/committee_member/properties/account_name
+         type: string
+         description: Committee member account name
+
+      committee_member_id:
+         minLength: 5
+         $id: /properties/committee_member/properties/committee_member_id
+         type: string
+         description: Committee member ID
+
+      voting_report_url:
+         $id: /properties/committee_member/properties/voting_report_url
+         type: string
+         description: Link to site that justifies voting reasons

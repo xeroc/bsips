@@ -1,0 +1,107 @@
+# General definition of objects to be used throughout the schemas
+definitions:
+  location:
+    required:
+    - name
+    - country
+    type: object
+    properties:
+      country:
+        type: string
+        description: Country code [XX]
+      latitude:
+        type: number
+        description: Latitude in decimal degrees
+      name:
+        type: string
+        description: Location in human readable format [City, State]
+      longitude:
+        type: number
+        description: Longitude in decimal degrees
+
+  organization:
+    required:
+    - location
+    - candidate_name
+    - website
+    type: object
+    properties:
+
+      location:
+        $ref: ! '#/definitions/location'
+        type: location
+        description: Organization location
+
+      code_of_conduct:
+        $id: /properties/org/properties/code_of_conduct
+        type: string
+        description: Link to Code of Conduct
+
+      ownership_disclosure:
+        $id: /properties/org/properties/ownership_disclosure
+        type: string
+        description: Link to company ownership disclosure
+
+      website:
+        $id: /properties/org/properties/website
+        type: string
+        description: Organization website
+
+      candidate_name:
+        $id: /properties/org/properties/candidate_name
+        type: string
+        description: Producer/organization name
+
+      contact:
+        $id: /properties/org/properties/contact
+        type: object
+        properties:
+          email:
+            type: string
+            description: Organization email
+          steemit:
+            type: String
+            description: username only, WITHOUT @
+          youtube:
+            type: String
+            description: channel address only
+          twitter:
+            type: String
+            description: username only
+          telegram:
+            type: String
+            description: username only
+          wechat:
+            type: String
+            description: username only
+          reddit:
+            type: String
+            description: username only
+          keybase:
+            type: String
+            description: username only
+          github:
+            type: String
+            description: username only
+          facebook:
+            type: String
+            description: group/page address only, not the entire url
+          pgp:
+            type: String
+            description: GPG fingerprint
+
+      branding:
+        type: object
+        properties:
+          logo_256:
+            $id: /properties/org/properties/branding/properties/logo_256
+            type: string
+            description: Link to Organization logo [PNG format, 256x256]
+          logo_1024:
+            $id: /properties/org/properties/branding/properties/logo_1024
+            type: string
+            description: Link to Organization logo [PNG format, 1024x1024]
+          logo_svg:
+            $id: /properties/org/properties/branding/properties/logo_svg
+            type: string
+            description: Link to Organization logo [SVG format]
